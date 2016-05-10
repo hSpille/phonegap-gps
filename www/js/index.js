@@ -78,6 +78,23 @@ var app = {
                 var element = document.getElementById('connection');
                 checkConnection(); 
             }
+
+            tlantic.plugins.socket.connect(
+              function (connectionId) {
+                console.log('worked! This is the connection ID: ', connectionId);  
+                var element = document.getElementById('socketsend');
+                element.innerHTML = 'ConId: ' + connectionId + ' ' ;
+              },
+
+              function () {
+                console.log('failed!');
+                var element = document.getElementById('socketsend');
+                element.innerHTML = 'Failed!' ;
+              },
+              '192.168.1.102',
+              8081
+            );
+
             document.addEventListener("online", onOnline, false);
             document.addEventListener("offline", onOffline, false);
            
